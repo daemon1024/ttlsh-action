@@ -54,7 +54,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Deployment succeeded! ✅ Image Tag : `ttl.sh/kubearmor_'+${{ steps.sha.outputs.result }}+'` Image Digest : `'+${{ steps.docker_build.outputs.digest }}+'`',
+              body: `Deployment succeeded! ✅ Image Tag : \`ttl.sh/kubearmor_${{ steps.sha.outputs.result }}\``,
             });
       - name: Message failure
         if: ${{ failure() }}
