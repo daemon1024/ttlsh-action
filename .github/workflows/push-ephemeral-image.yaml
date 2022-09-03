@@ -40,16 +40,10 @@ jobs:
               content: "rocket",
             });
 
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Build image and push to Docker Hub and GitHub Container Registry
-        uses: docker/build-push-action@v2
-        with:
-          tags: |
-            ttl.sh/kubearmor_${{ steps.sha.outputs.result }}
-          push: true
+      - name: Build image and push to Docker Hub
+        run: |
+          docker build -t ttl.sh/kubearmor_${{ steps.sha.outputs.result }} .
+          docker push ttl.sh/kubearmor_${{ steps.sha.outputs.result }}
 
       - name: Message success
         if: ${{ success() }}
